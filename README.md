@@ -1,2 +1,10 @@
 # TASK-1
-To Clean and prepare a raw dataset (with nulls, duplicates, inconsistent formats).
+Short Summary of Cleaning:
+
+Removed duplicates from the dataset.
+
+Filled missing numeric values with median.
+
+Filled missing text values with “Unknown” and standardized capitalization.
+
+Trimmed extra spaces in text columns.
