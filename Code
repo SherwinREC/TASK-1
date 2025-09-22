@@ -1,0 +1,20 @@
+import pandas as pd
+import kagglehub
+
+path = kagglehub.dataset_download("pauloarruda/customer-personality-analysis")
+df = pd.read_csv(f"{path}/marketing_campaign.csv", sep="\t")
+
+df = df.drop_duplicates()
+
+numeric_cols = df.select_dtypes(include='number').columns
+for col in numeric_cols:
+    df[col].fillna(df[col].median(), inplace=True)
+
+text_cols = df.select_dtypes(include='object').columns
+for col in text_cols:
+    df[col].fillna("Unknown", inplace=True)
+    df[col] = df[col].str.strip().str.title()
+
+df.to_csv("cleaned_dataset.csv", index=False)
+
+print("Dataset cleaned and saved as cleaned_dataset.csv")
